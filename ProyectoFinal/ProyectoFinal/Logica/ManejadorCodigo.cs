@@ -13,11 +13,13 @@ namespace Proyecto1.Logica
         private AnalizadorLexico analizador;
         private EditorCodigo editor;
         private List<String> tokensInvalidos;
+        private List<Token> tokensValidos;
 
         public ManejadorCodigo(EditorCodigo editor)
         {
             this.editor = editor;
             tokensInvalidos = new List<String>();
+            tokensValidos = new List<Token>();
         }
 
         public void ejecutarManejador()
@@ -25,6 +27,7 @@ namespace Proyecto1.Logica
             if (tokensInvalidos!=null)
             {
                 tokensInvalidos.Clear();
+                tokensValidos.Clear();
             }
             byte[] asciiBytes = Encoding.ASCII.GetBytes(codigoAnalizar);
             analizador = new AnalizadorLexico(asciiBytes,this,editor);
@@ -46,6 +49,11 @@ namespace Proyecto1.Logica
                     tokensInvalidos.Add(token);
                 }
             }    
+        }
+
+        public void agregarTokenCorrecto(Token tokenNuevo)
+        {
+            tokensValidos.Add(tokenNuevo);
         }
 
         public void eliminarPalabraInicialRepetida(String palabraAnterior)

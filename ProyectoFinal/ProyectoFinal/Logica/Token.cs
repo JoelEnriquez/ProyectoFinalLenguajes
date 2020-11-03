@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto1.Logica
 {
-    class Token
+    public class Token
     {
         public String tipoToken { get; set; }
         public String contenido { get; set; }

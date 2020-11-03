@@ -86,19 +86,8 @@ namespace Proyecto1.Logica
                 {
                     String cadenaTransicion = Char.ToString((char)charActual);
 
-                    //Ruta del token para obtener luego el color si se llega a un estado de aceptacion
-                    if (estadoActual == 0)
-                    {
-                        auxRutaToken = columnaAutomata + "-" + transicion;
-                    }
-                    else
-                    {
-                        if (estadoActual != transicion)
-                        {
-                            auxRutaToken += "," + columnaAutomata + "-" + transicion;
-                        }
-                    }
-
+                    establecerRuta(transicion);
+                    
                     //concatenar la cadena momentanea y proseguir al siguiente
                     auxCadenaMomentanea += cadenaTransicion;
                     if (automata.esEstadoAceptacion(transicion))
@@ -129,7 +118,6 @@ namespace Proyecto1.Logica
                         }
                         asignarColor(i + 1, color);
                     }
-
                     //Para el siguiente char, nos pasamos al siguiente estado
                     estadoActual = transicion;
                 }
@@ -174,6 +162,22 @@ namespace Proyecto1.Logica
             else
             {
                 columna++;
+            }
+        }
+
+        private void establecerRuta(int transicion)
+        {
+            //Ruta del token para obtener luego el color si se llega a un estado de aceptacion
+            if (estadoActual == 0)
+            {
+                auxRutaToken = columnaAutomata + "-" + transicion;
+            }
+            else
+            {
+                if (estadoActual != transicion)
+                {
+                    auxRutaToken += "," + columnaAutomata + "-" + transicion;
+                }
             }
         }
     }

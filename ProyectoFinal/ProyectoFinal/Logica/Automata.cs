@@ -143,6 +143,7 @@ namespace Proyecto1.Logica
             listadoPalabrasReservadas.Add("DESDE");
             listadoPalabrasReservadas.Add("HASTA");
             listadoPalabrasReservadas.Add("INCREMENTO");
+            listadoPalabrasReservadas.Add("principal");
         }
 
         private void setearEstadosAceptacion()
