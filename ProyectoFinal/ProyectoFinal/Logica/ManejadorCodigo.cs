@@ -56,6 +56,16 @@ namespace Proyecto1.Logica
             tokensValidos.Add(tokenNuevo);
         }
 
+        public void quitarTokenReciente()
+        {
+            tokensValidos.RemoveAt(tokensValidos.Count-1);
+        }
+
+        public int numeroTokenValidos()
+        {
+            return tokensValidos.Count;
+        }
+
         public void eliminarPalabraInicialRepetida(String palabraAnterior)
         {
             tokensInvalidos.Remove(palabraAnterior);

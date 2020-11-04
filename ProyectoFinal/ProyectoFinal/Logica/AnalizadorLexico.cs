@@ -95,28 +95,21 @@ namespace Proyecto1.Logica
                         auxTokenAceptado = auxCadenaMomentanea;
 
                         //pintar el token valido
-                        Color color;
+                        String tipoToken;
                         if (transicion == 5 || transicion == 8)
                         {
-                            color = automata.devolverColorPorRuta(auxRutaToken);
+                            tipoToken = automata.devolverTipoToken(auxRutaToken);
                         }
                         else
                         {
-                            color = automata.devolverColorPorEstado(transicion, auxTokenAceptado);
+                            tipoToken = automata.devolverPorEstado(transicion);
                             //es palabra reservada erronea
-                            if (color == Color.OrangeRed)
+                            if (tipoToken.Equals("Palabra"))
                             {
-                                //nos asegurmos que no se repita la palabra reservada erronea
-                                if (!palabraReservadaFalloAux.Equals(""))
-                                {
-                                    manejador.eliminarPalabraInicialRepetida(palabraReservadaFalloAux);
-
-                                }
-                                manejador.agregarTokenErroneo(auxTokenAceptado);
-                                palabraReservadaFalloAux = auxTokenAceptado;
+                                tipoToken = automata.devolverTipoTokenPR(auxTokenAceptado);
                             }
                         }
-                        asignarColor(i + 1, color);
+                        manejador.agregarTokenCorrecto(new Token(tipoToken, auxTokenAceptado, fila, columna));
                     }
                     //Para el siguiente char, nos pasamos al siguiente estado
                     estadoActual = transicion;

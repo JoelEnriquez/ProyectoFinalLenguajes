@@ -55,6 +55,7 @@
     <Compile Include="Logica\Automata.cs" />
     <Compile Include="Logica\EstadoAceptacion.cs" />
     <Compile Include="Logica\ManejadorCodigo.cs" />
+    <Compile Include="Logica\PalabraReservada.cs" />
     <Compile Include="Logica\Token.cs" />
     <Compile Include="ObjetosCodigo\CodigoFuente.cs" />
     <Compile Include="ObjetosCodigo\Proyecto.cs" />
