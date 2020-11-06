@@ -9,13 +9,13 @@ namespace Proyecto1.Logica
 {
     class Automata
     {
-        private int[,] tablaTransiciones = new int[17, 23];
+        private int[,] tablaTransiciones = new int[19, 23];
         private List<int> estadosAceptacion;
         private List<EstadoAceptacion> listEstadosAceptacion;
         private List<PalabraReservada> listadoPalabrasReservadas;
 
         public Automata()
-        {          
+        {
             estadosAceptacion = new List<int>();
             listEstadosAceptacion = new List<EstadoAceptacion>();
             listadoPalabrasReservadas = new List<PalabraReservada>();
@@ -45,6 +45,7 @@ namespace Proyecto1.Logica
             tablaTransiciones[0, 2] = 6;
             tablaTransiciones[0, 3] = 5;
             tablaTransiciones[0, 4] = 4;
+            tablaTransiciones[0, 5] = 17;
             tablaTransiciones[0, 6] = 2;
             tablaTransiciones[0, 7] = 3;
             tablaTransiciones[0, 8] = 8;
@@ -114,7 +115,7 @@ namespace Proyecto1.Logica
             tablaTransiciones[14, 20] = 14;
             tablaTransiciones[14, 21] = 14;
             tablaTransiciones[14, 22] = 14;
-            
+
             //Transiciones desde el estado 15
             tablaTransiciones[15, 6] = 15;
 
@@ -125,28 +126,35 @@ namespace Proyecto1.Logica
             tablaTransiciones[16, 20] = 14;
             tablaTransiciones[16, 21] = 14;
             tablaTransiciones[16, 22] = 14;
+
+            //Transiciones desde el estado 17
+            tablaTransiciones[17, 4] = 18;
+
+            //Transiciones desde el estado 18
+            tablaTransiciones[18, 4] = 18;
+            tablaTransiciones[18, 6] = 18;
         }
-        
+
         private void setearPalabrasReservadas()
         {
             listadoPalabrasReservadas.Add(new PalabraReservada("verdadero", "Booleano"));
-            listadoPalabrasReservadas.Add(new PalabraReservada("falso","Booleano"));
+            listadoPalabrasReservadas.Add(new PalabraReservada("falso", "Booleano"));
             listadoPalabrasReservadas.Add(new PalabraReservada("entero", "TD"));
             listadoPalabrasReservadas.Add(new PalabraReservada("decimal", "TD"));
-            listadoPalabrasReservadas.Add(new PalabraReservada("cadena","TD"));
-            listadoPalabrasReservadas.Add(new PalabraReservada("booleano","TD"));
-            listadoPalabrasReservadas.Add(new PalabraReservada("carácter","TD"));
-            listadoPalabrasReservadas.Add(new PalabraReservada("SI","Si"));
-            listadoPalabrasReservadas.Add(new PalabraReservada("SINO","Sino"));
-            listadoPalabrasReservadas.Add(new PalabraReservada("SINO_SI","Sino_Si"));
-            listadoPalabrasReservadas.Add(new PalabraReservada("MIENTRAS","Mientras"));
-            listadoPalabrasReservadas.Add(new PalabraReservada("HACER","Hacer"));
-            listadoPalabrasReservadas.Add(new PalabraReservada("DESDE","Desde"));
-            listadoPalabrasReservadas.Add(new PalabraReservada("HASTA","Hasta"));
-            listadoPalabrasReservadas.Add(new PalabraReservada("INCREMENTO","Incremento"));
-            listadoPalabrasReservadas.Add(new PalabraReservada("principal","Principal"));
+            listadoPalabrasReservadas.Add(new PalabraReservada("cadena", "TD"));
+            listadoPalabrasReservadas.Add(new PalabraReservada("booleano", "TD"));
+            listadoPalabrasReservadas.Add(new PalabraReservada("carácter", "TD"));
+            listadoPalabrasReservadas.Add(new PalabraReservada("SI", "PR_Si"));
+            listadoPalabrasReservadas.Add(new PalabraReservada("SINO", "PR_Sino"));
+            listadoPalabrasReservadas.Add(new PalabraReservada("SINO_SI", "PR_Sino_Si"));
+            listadoPalabrasReservadas.Add(new PalabraReservada("MIENTRAS", "PR_Mientras"));
+            listadoPalabrasReservadas.Add(new PalabraReservada("HACER", "PR_Hacer"));
+            listadoPalabrasReservadas.Add(new PalabraReservada("DESDE", "PR_Desde"));
+            listadoPalabrasReservadas.Add(new PalabraReservada("HASTA", "PR_Hasta"));
+            listadoPalabrasReservadas.Add(new PalabraReservada("INCREMENTO", "PR_Incremento"));
+            listadoPalabrasReservadas.Add(new PalabraReservada("principal", "PR_Principal"));
         }
-        
+
         private void setearEstadosAceptacion()
         {
             estadosAceptacion.Add(1);
@@ -162,8 +170,9 @@ namespace Proyecto1.Logica
             estadosAceptacion.Add(18);
         }
 
-        private void ingresarCaminos(){
-            listEstadosAceptacion.Add(new EstadoAceptacion(1,"Operador Aritmetico"));//
+        private void ingresarCaminos()
+        {
+            listEstadosAceptacion.Add(new EstadoAceptacion(1, "Operador Aritmetico"));//
             listEstadosAceptacion.Add(new EstadoAceptacion(2, "Entero"));//
             listEstadosAceptacion.Add(new EstadoAceptacion(4, "Char"));//
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Cadena", "7-3,7-5"));
@@ -171,9 +180,9 @@ namespace Proyecto1.Logica
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Operador Relacional", "9-8,10-5"));
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Operador Relacional", "10-8,10-5"));
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Operador Relacional", "11-8,10-5"));
-            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Operador Aritmetico","1-7,1-5"));
-            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Operador Aritmetico","0-1,0-5"));
-            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Comentario","2-6,3-14,3-16,2-5"));
+            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Operador Aritmetico", "1-7,1-5"));
+            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Operador Aritmetico", "0-1,0-5"));
+            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Comentario", "2-6,3-14,3-16,2-5"));
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Operador Aritmetico", "3-5"));
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Fin Sentencia", "14-5"));
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Coma", "18-5"));
@@ -181,15 +190,15 @@ namespace Proyecto1.Logica
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Espacio Blanco", "21-5"));
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Espacio Blanco", "22-5"));
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Signos de agrupacion", "15-5"));
-            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Signos de agrupacion", "16-5"));            
+            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Signos de agrupacion", "16-5"));
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Operador Logico", "12-9,12-5"));
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Operador Logico", "13-10,13-5"));
             listEstadosAceptacion.Add(new EstadoAceptacion(6, "Operador Aritmetico"));//
             listEstadosAceptacion.Add(new EstadoAceptacion(7, "Operador Aritmetico"));//
-            listEstadosAceptacion.Add(new EstadoAceptacion(8, "Operador Relacional","8-8"));
-            listEstadosAceptacion.Add(new EstadoAceptacion(8, "Operador Relacional","9-8"));
-            listEstadosAceptacion.Add(new EstadoAceptacion(8, "Asignacion","10-8"));
-            listEstadosAceptacion.Add(new EstadoAceptacion(8, "Operador Logico NOT","11-8"));
+            listEstadosAceptacion.Add(new EstadoAceptacion(8, "Operador Relacional", "8-8"));
+            listEstadosAceptacion.Add(new EstadoAceptacion(8, "Operador Relacional", "9-8"));
+            listEstadosAceptacion.Add(new EstadoAceptacion(8, "Asignacion", "10-8"));
+            listEstadosAceptacion.Add(new EstadoAceptacion(8, "Operador Logico NOT", "11-8"));
             listEstadosAceptacion.Add(new EstadoAceptacion(12, "Palabra"));//
             listEstadosAceptacion.Add(new EstadoAceptacion(13, "Comentario"));//
             listEstadosAceptacion.Add(new EstadoAceptacion(15, "Decimal"));//
@@ -200,14 +209,14 @@ namespace Proyecto1.Logica
         {
             for (int i = 0; i < listEstadosAceptacion.Count; i++)
             {
-                if (listEstadosAceptacion[i].caminoAceptacion!=null)
+                if (listEstadosAceptacion[i].caminoAceptacion != null)
                 {
                     if (listEstadosAceptacion[i].caminoAceptacion.Equals(ruta))
                     {
                         return listEstadosAceptacion[i].tipoToken;
                     }
                 }
-                
+
             }
             return "";
         }
@@ -216,7 +225,7 @@ namespace Proyecto1.Logica
         {
             for (int i = 0; i < listEstadosAceptacion.Count; i++)
             {
-                if (listEstadosAceptacion[i].numeroEstado==estadoAceptacion)
+                if (listEstadosAceptacion[i].numeroEstado == estadoAceptacion)
                 {
                     return listEstadosAceptacion[i].tipoToken;
                 }
@@ -245,14 +254,20 @@ namespace Proyecto1.Logica
             return false;
         }
 
-        public int devolverColumna(int codigoASCCI)
+        public int devolverColumna(int codigoASCCI, int estadoActual)
         {
-            if (codigoASCCI==45)
+            //Estados particulares que puede venir cualquier char
+            if (estadoActual==3 || estadoActual==13 || estadoActual ==14 || estadoActual==16)
+            {
+                return columnaEstadosEspecificos(codigoASCCI,estadoActual);
+            }
+
+            if (codigoASCCI == 45)
             {
                 //Signo menos
                 return 0;
             }
-            else if (codigoASCCI==43)
+            else if (codigoASCCI == 43)
             {
                 //Signo mas
                 return 1;
@@ -267,9 +282,9 @@ namespace Proyecto1.Logica
                 return 3;
                 //asterisco
             }
-            else if ((codigoASCCI >= 65 && codigoASCCI <= 90) ||( codigoASCCI>= 97 && codigoASCCI<= 122)
-                || codigoASCCI>= 160 && codigoASCCI<= 165 || codigoASCCI==130 || codigoASCCI == 181
-                || codigoASCCI == 144 || codigoASCCI == 214 || codigoASCCI==224 || codigoASCCI==233)
+            else if ((codigoASCCI >= 65 && codigoASCCI <= 90) || (codigoASCCI >= 97 && codigoASCCI <= 122)
+                || codigoASCCI >= 160 && codigoASCCI <= 165 || codigoASCCI == 130 || codigoASCCI == 181
+                || codigoASCCI == 144 || codigoASCCI == 214 || codigoASCCI == 224 || codigoASCCI == 233)
             {
                 //cualquier letra
                 return 4;
@@ -279,7 +294,7 @@ namespace Proyecto1.Logica
                 //guion bajo
                 return 5;
             }
-            else if (codigoASCCI >=48 && codigoASCCI<= 57)
+            else if (codigoASCCI >= 48 && codigoASCCI <= 57)
             {
                 //numero
                 return 6;
@@ -339,38 +354,86 @@ namespace Proyecto1.Logica
                 //punto
                 return 17;
             }
-            else if ((codigoASCCI >= 33 && codigoASCCI<=126) || (codigoASCCI>= 128 && codigoASCCI<=253))
+            else if (codigoASCCI == 44)
+            {
+                //coma
+                return 18;
+            }
+            else if ((codigoASCCI >= 33 && codigoASCCI <= 126) || (codigoASCCI >= 128 && codigoASCCI <= 253))
             {
                 //cualquier char
-                return 18;
+                return 19;
             }
             else if (codigoASCCI == 9)
             {
                 //tab
-                return 19;
+                return 20;
             }
             else if (codigoASCCI == 32)
             {
                 //espacio
-                return 20;
+                return 21;
             }
             else if (codigoASCCI == 10)
             {
                 //enter
-                return 21;
+                return 22;
             }
 
             return -1;
         }
 
-
-        public Boolean esEspacio(int charActual)
+        private int columnaEstadosEspecificos(int codigoASCCI, int estadoActual)
         {
-            if (charActual == 9 || charActual == 10 || charActual == 21)
+            if (estadoActual==3)
             {
-                return true;
+                if (codigoASCCI == 34)
+                {
+                    return 7; //Comillas dobles
+                }
             }
-            return false;
+            else if (estadoActual==14)
+            {
+                if (codigoASCCI== 42)
+                {
+                    return 3; //Asterisco
+                }
+            }
+            else if (estadoActual==16)
+            {
+                if (codigoASCCI == 47)
+                {
+                    return 2; //Barra inclinada
+                }
+                else if (codigoASCCI==42)
+                {
+                    return 3; //Asterisco
+                }
+            }
+
+            //Comprobar espacios en blanco o cualquier char
+            if ((codigoASCCI >= 33 && codigoASCCI <= 126) || (codigoASCCI >= 128 && codigoASCCI <= 253))
+            {
+                //cualquier char
+                return 19;
+            }
+            else if (codigoASCCI == 9)
+            {
+                //tab
+                return 20;
+            }
+            else if (codigoASCCI == 32)
+            {
+                //espacio
+                return 21;
+            }
+            else if (codigoASCCI == 10)
+            {
+                //enter
+                return 22;
+            }
+
+            return -1;
         }
 
         public int retornarTransicion(int fila, int columna)
@@ -378,6 +441,6 @@ namespace Proyecto1.Logica
             return tablaTransiciones[fila, columna];
         }
 
-        
+
     }
 }

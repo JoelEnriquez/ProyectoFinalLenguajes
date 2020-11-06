@@ -375,7 +375,7 @@ namespace Proyecto1
             proyecto.setearCodigo(codigoAbiertoCombo.Text, editorCodigoRichText.Text);
             manejador.recibirCodigo(editorCodigoRichText.Text);
             manejador.ejecutarManejador();
-
+            manejador.pintarCodigo();
         }
 
         private void editorRichTextBox_SelectionChanged(object sender, System.EventArgs e)
@@ -407,10 +407,10 @@ namespace Proyecto1
 
                 if (editorCodigoRichText.Text.Length>0)
                 {
-                    List<String> tokensInvalidos = manejador.obtenerTokensInvalidos();
+                    List<Token> tokensInvalidos = manejador.obtenerTokensInvalidos();
                     for (int i = 0; i < tokensInvalidos.Count; i++)
                     {
-                        salidaErroresRichText.AppendText(tokensInvalidos[i] + "\n");
+                        salidaErroresRichText.AppendText(tokensInvalidos[i].contenido + "\n");
                     }
                 } 
             }

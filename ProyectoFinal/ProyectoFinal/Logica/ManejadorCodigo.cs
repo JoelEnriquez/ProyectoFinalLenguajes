@@ -13,13 +13,13 @@ namespace Proyecto1.Logica
         private AnalizadorLexico analizador;
         private EditorCodigo editor;
         private List<String> tokensInvalidos;
-        private List<Token> tokensValidos;
+        private List<Token> listaTokens;
 
         public ManejadorCodigo(EditorCodigo editor)
         {
             this.editor = editor;
             tokensInvalidos = new List<String>();
-            tokensValidos = new List<Token>();
+            listaTokens = new List<Token>();
         }
 
         public void ejecutarManejador()
@@ -27,7 +27,7 @@ namespace Proyecto1.Logica
             if (tokensInvalidos!=null)
             {
                 tokensInvalidos.Clear();
-                tokensValidos.Clear();
+                listaTokens.Clear();
             }
             byte[] asciiBytes = Encoding.ASCII.GetBytes(codigoAnalizar);
             analizador = new AnalizadorLexico(asciiBytes,this,editor);
@@ -51,28 +51,46 @@ namespace Proyecto1.Logica
             }    
         }
 
-        public void agregarTokenCorrecto(Token tokenNuevo)
+        public void pintarCodigo()
         {
-            tokensValidos.Add(tokenNuevo);
+            PintarCodigo pintarCodigo = new PintarCodigo(editor, listaTokens);
+            pintarCodigo.pintarCodigo();
+        }
+
+        public void agregarTokenNuevo(Token tokenNuevo)
+        {
+            listaTokens.Add(tokenNuevo);
         }
 
         public void quitarTokenReciente()
         {
-            tokensValidos.RemoveAt(tokensValidos.Count-1);
+            listaTokens.RemoveAt(listaTokens.Count-1);
         }
 
-        public int numeroTokenValidos()
+        public Boolean ultimoTokenIgual(String contenidoUltimoToken)
         {
-            return tokensValidos.Count;
+            if (numeroTokens()>0 && listaTokens[numeroTokens()-1].contenido.Equals(contenidoUltimoToken))
+            {
+                return true;
+            }
+            return false;
         }
 
-        public void eliminarPalabraInicialRepetida(String palabraAnterior)
+        public int numeroTokens()
         {
-            tokensInvalidos.Remove(palabraAnterior);
+            return listaTokens.Count;
         }
 
-        public List<String> obtenerTokensInvalidos()
+        public List<Token> obtenerTokensInvalidos()
         {
+            List<Token> tokensInvalidos = new List<Token>();
+            for (int i = 0; i < numeroTokens(); i++)
+            {
+                if (listaTokens[i].tipoToken.Equals("Erroneo"))
+                {
+                    tokensInvalidos.Add(listaTokens[i]);
+                }
+            }
             return tokensInvalidos;
         }
 

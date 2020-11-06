@@ -20,7 +20,6 @@ namespace Proyecto1.Logica
         private String auxTokenAceptado = "";
         private String auxCadenaMomentanea = "";
         private String auxRutaToken = "";
-        private String palabraReservadaFalloAux = "";
         private RichTextBox ingresoCodigoRich;
         private int fila = 1;
         private int columna = 1;
@@ -42,37 +41,28 @@ namespace Proyecto1.Logica
 
                 moverColumnaFila(charActual);
 
-                columnaAutomata = automata.devolverColumna(charActual); //Se obtiene la columna correspondiente al char
+                columnaAutomata = automata.devolverColumna(charActual, estadoActual); //Se obtiene la columna correspondiente al char
 
                 int transicion = automata.retornarTransicion(estadoActual, columnaAutomata);
                 //verifiar si la nueva transicion nos dirige a un estado de aceptacion
 
                 if (transicion == -1) //No hay transicion valida
                 {
-                    //retornar la ultima cadena valida
                     if (automata.esEstadoAceptacion(estadoActual))
                     {
-                        apuntadorTexto = i;
-                        //Se vuelve a analizar el char entrante
                         i--;
                     }
-                    else
-                    {
+                    else { 
                         //si no hay cadena aceptada
                         if (estadoActual == 0)
                         {
-                            //el token erroneo es el entrante
-                            manejador.agregarTokenErroneo(Char.ToString((char)charActual));
-                            asignarColor(i + 1, Color.OrangeRed);
+                        //el token erroneo es el entrante
+                        agregarTokenErroneoNuevo(Char.ToString((char)charActual), i+1);
                         }
                         else
                         {
-                            //poner el token erroneo en rojo y se vuelve a analizar la cadena entrante
-                            manejador.agregarTokenErroneo(auxCadenaMomentanea.Substring(auxTokenAceptado.Length));
-                            apuntadorTexto = i - 1;
-                            asignarColor(i, Color.OrangeRed);
-
-                            apuntadorTexto = i;
+                        String tokenErroneo = auxCadenaMomentanea.Substring(auxTokenAceptado.Length);
+                        agregarTokenErroneoNuevo(tokenErroneo, i);
                             i--;//Volver a analizar el token entrante   
                         }
                     }
@@ -80,7 +70,6 @@ namespace Proyecto1.Logica
                     auxTokenAceptado = "";
                     auxCadenaMomentanea = "";
                     auxRutaToken = "";
-                    palabraReservadaFalloAux = "";
                 }
                 else
                 {
@@ -92,9 +81,9 @@ namespace Proyecto1.Logica
                     auxCadenaMomentanea += cadenaTransicion;
                     if (automata.esEstadoAceptacion(transicion))
                     {
+                        eliminarPosibleTokenRepetido(auxTokenAceptado);
                         auxTokenAceptado = auxCadenaMomentanea;
 
-                        //pintar el token valido
                         String tipoToken;
                         if (transicion == 5 || transicion == 8)
                         {
@@ -109,22 +98,19 @@ namespace Proyecto1.Logica
                                 tipoToken = automata.devolverTipoTokenPR(auxTokenAceptado);
                             }
                         }
-                        manejador.agregarTokenCorrecto(new Token(tipoToken, auxTokenAceptado, fila, columna));
+                        agregarTokenAceptadoNuevo(tipoToken, i+1);
                     }
                     //Para el siguiente char, nos pasamos al siguiente estado
                     estadoActual = transicion;
                 }
-
             }
 
             ////se verifica si hay una cadena aux restante, de ser asi, es porque no esta en un estado de aceptacion
 
             if (!automata.esEstadoAceptacion(estadoActual))
             {
-                apuntadorTexto = charAnalizar.Length - (auxCadenaMomentanea.Length - auxTokenAceptado.Length);
-                asignarColor(charAnalizar.Length, Color.OrangeRed);
-
-                manejador.agregarTokenErroneo(auxCadenaMomentanea.Substring(auxTokenAceptado.Length));
+                String ultimaCadenaErronea = auxCadenaMomentanea.Substring(auxTokenAceptado.Length);
+                agregarTokenErroneoNuevo(ultimaCadenaErronea, charAnalizar.Length);
             }
         }
 
@@ -172,6 +158,24 @@ namespace Proyecto1.Logica
                     auxRutaToken += "," + columnaAutomata + "-" + transicion;
                 }
             }
+        }
+
+        private void eliminarPosibleTokenRepetido(String ultimoTokenAceptado)
+        {
+            if (manejador.ultimoTokenIgual(ultimoTokenAceptado))
+            {
+                manejador.quitarTokenReciente();
+            }
+        }
+
+        private void agregarTokenAceptadoNuevo(String tipoToken, int posicionToken)
+        {
+            manejador.agregarTokenNuevo(new Token(tipoToken, auxTokenAceptado, fila, columna, posicionToken));
+        }
+
+        private void agregarTokenErroneoNuevo(String tokenErroneo, int posicionToken)
+        {
+            manejador.agregarTokenNuevo(new Token("Erroneo", tokenErroneo, fila, columna, posicionToken));
         }
     }
 }
