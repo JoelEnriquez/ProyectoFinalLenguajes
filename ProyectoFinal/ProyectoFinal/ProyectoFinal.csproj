@@ -51,13 +51,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logica\AnalizadorLexico.cs" />
-    <Compile Include="Logica\Automata.cs" />
-    <Compile Include="Logica\EstadoAceptacion.cs" />
+    <Compile Include="Logica\Lexico\AnalizadorLexico.cs" />
+    <Compile Include="Logica\Sintactica\AnalizadorSintactico.cs" />
+    <Compile Include="Logica\Lexico\Automata.cs" />
+    <Compile Include="Logica\Lexico\EstadoAceptacion.cs" />
     <Compile Include="Logica\ManejadorCodigo.cs" />
-    <Compile Include="Logica\PalabraReservada.cs" />
-    <Compile Include="Logica\PintarCodigo.cs" />
-    <Compile Include="Logica\Token.cs" />
+    <Compile Include="Logica\Lexico\PalabraReservada.cs" />
+    <Compile Include="Logica\Lexico\PintarCodigo.cs" />
+    <Compile Include="Logica\Lexico\Token.cs" />
+    <Compile Include="Logica\Sintactica\Produccion.cs" />
+    <Compile Include="Logica\Sintactica\Simbolo.cs" />
+    <Compile Include="Logica\Sintactica\Terminales.cs" />
+    <Compile Include="Logica\Sintactica\TablaAnalisisSintactico.cs" />
     <Compile Include="ObjetosCodigo\CodigoFuente.cs" />
     <Compile Include="ObjetosCodigo\Proyecto.cs" />
     <Compile Include="Windows\AbrirBorrarCodigo.cs">

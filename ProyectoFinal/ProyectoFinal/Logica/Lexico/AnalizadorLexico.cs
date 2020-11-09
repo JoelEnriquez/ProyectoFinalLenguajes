@@ -114,17 +114,6 @@ namespace Proyecto1.Logica
             }
         }
 
-        public void asignarColor(int indiceCiclo, Color colorTexto)
-        {
-            int index = ingresoCodigoRich.SelectionStart;
-
-            ingresoCodigoRich.Select(apuntadorTexto, indiceCiclo);
-            ingresoCodigoRich.SelectionColor = colorTexto;
-
-            //Volver a deseleccionar el texto que ya esta pintado
-            ingresoCodigoRich.SelectionStart = index;
-            ingresoCodigoRich.SelectionLength = 0;
-        }
 
         /// <summary>
         /// Nos mueve entre la fila y la columna del texto
@@ -167,7 +156,7 @@ namespace Proyecto1.Logica
                 manejador.quitarTokenReciente();
             }
         }
-
+        
         private void agregarTokenAceptadoNuevo(String tipoToken, int posicionToken)
         {
             manejador.agregarTokenNuevo(new Token(tipoToken, auxTokenAceptado, fila, columna, posicionToken));

@@ -42,7 +42,10 @@ namespace Proyecto1.Logica
         {
             if (tipoToken.Equals("Operador Relacional") || tipoToken.Equals("Operador Logico") ||
                tipoToken.Equals("Signos de agrupacion") || tipoToken.Equals("Operador Aritmetico") ||
-               tipoToken.Equals("Operador Logico NOT"))
+               tipoToken.Equals("Operador Logico NOT") || tipoToken.Equals("Potencia") ||
+               tipoToken.Equals("Parentesis Apertura") || tipoToken.Equals("Parentesis Cierre") ||
+               tipoToken.Equals("Llave Apertura") || tipoToken.Equals("Llave Cierre")) 
+
             {
                 return Color.DarkBlue;
             }

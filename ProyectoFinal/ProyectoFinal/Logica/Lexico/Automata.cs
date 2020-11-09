@@ -9,7 +9,7 @@ namespace Proyecto1.Logica
 {
     class Automata
     {
-        private int[,] tablaTransiciones = new int[19, 23];
+        private int[,] tablaTransiciones = new int[19, 26];
         private List<int> estadosAceptacion;
         private List<EstadoAceptacion> listEstadosAceptacion;
         private List<PalabraReservada> listadoPalabrasReservadas;
@@ -58,9 +58,12 @@ namespace Proyecto1.Logica
             tablaTransiciones[0, 15] = 5;
             tablaTransiciones[0, 16] = 5;
             tablaTransiciones[0, 18] = 5;
+            tablaTransiciones[0, 19] = 5;
             tablaTransiciones[0, 20] = 5;
             tablaTransiciones[0, 21] = 5;
-            tablaTransiciones[0, 22] = 5;
+            tablaTransiciones[0, 23] = 5;
+            tablaTransiciones[0, 24] = 5;
+            tablaTransiciones[0, 25] = 5;
 
             //Transiciones desde el estado 1
             tablaTransiciones[1, 0] = 5;
@@ -72,10 +75,10 @@ namespace Proyecto1.Logica
 
             //Transiciones desde el estado 3
             tablaTransiciones[3, 7] = 5;
-            tablaTransiciones[3, 19] = 3;
-            tablaTransiciones[3, 20] = 3;
-            tablaTransiciones[3, 21] = 3;
             tablaTransiciones[3, 22] = 3;
+            tablaTransiciones[3, 23] = 3;
+            tablaTransiciones[3, 24] = 3;
+            tablaTransiciones[3, 25] = 3;
 
             //Transiciones desde el estado 4
             tablaTransiciones[4, 4] = 12;
@@ -105,16 +108,16 @@ namespace Proyecto1.Logica
             tablaTransiciones[12, 5] = 12;
 
             //Transiciones desde el estado 13
-            tablaTransiciones[13, 19] = 13;
-            tablaTransiciones[13, 20] = 13;
-            tablaTransiciones[13, 21] = 13;
+            tablaTransiciones[13, 22] = 13;
+            tablaTransiciones[13, 23] = 13;
+            tablaTransiciones[13, 24] = 13;
 
             //Transiciones desde el estado 14
             tablaTransiciones[14, 3] = 16;
-            tablaTransiciones[14, 19] = 14;
-            tablaTransiciones[14, 20] = 14;
-            tablaTransiciones[14, 21] = 14;
             tablaTransiciones[14, 22] = 14;
+            tablaTransiciones[14, 23] = 14;
+            tablaTransiciones[14, 24] = 14;
+            tablaTransiciones[14, 25] = 14;
 
             //Transiciones desde el estado 15
             tablaTransiciones[15, 6] = 15;
@@ -122,10 +125,10 @@ namespace Proyecto1.Logica
             //Transiciones desde el estado 16
             tablaTransiciones[16, 2] = 5;
             tablaTransiciones[16, 3] = 16;
-            tablaTransiciones[16, 19] = 14;
-            tablaTransiciones[16, 20] = 14;
-            tablaTransiciones[16, 21] = 14;
             tablaTransiciones[16, 22] = 14;
+            tablaTransiciones[16, 23] = 14;
+            tablaTransiciones[16, 24] = 14;
+            tablaTransiciones[16, 25] = 14;
 
             //Transiciones desde el estado 17
             tablaTransiciones[17, 4] = 18;
@@ -186,11 +189,14 @@ namespace Proyecto1.Logica
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Operador Aritmetico", "3-5"));
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Fin Sentencia", "14-5"));
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Coma", "18-5"));
-            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Espacio Blanco", "20-5"));
-            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Espacio Blanco", "21-5"));
-            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Espacio Blanco", "22-5"));
-            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Signos de agrupacion", "15-5"));
-            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Signos de agrupacion", "16-5"));
+            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Potencia", "19-5"));
+            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Llave Apertura", "20-5"));
+            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Llave Cierre", "21-5"));
+            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Espacio Blanco", "23-5"));
+            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Espacio Blanco", "24-5"));
+            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Espacio Blanco", "25-5"));
+            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Parentesis Apertura", "15-5"));
+            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Parentesis Cierre", "16-5"));
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Operador Logico", "12-9,12-5"));
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Operador Logico", "13-10,13-5"));
             listEstadosAceptacion.Add(new EstadoAceptacion(6, "Operador Aritmetico"));//
@@ -359,25 +365,40 @@ namespace Proyecto1.Logica
                 //coma
                 return 18;
             }
+            else if (codigoASCCI == 94)
+            {
+                //simbolo de potencia
+                return 19;
+            }
+            else if (codigoASCCI == 123)
+            {
+                //llave apertura
+                return 20;
+            }
+            else if (codigoASCCI == 125)
+            {
+                //llave cierre
+                return 21;
+            }
             else if ((codigoASCCI >= 33 && codigoASCCI <= 126) || (codigoASCCI >= 128 && codigoASCCI <= 253))
             {
                 //cualquier char
-                return 19;
+                return 22;
             }
             else if (codigoASCCI == 9)
             {
                 //tab
-                return 20;
+                return 23;
             }
             else if (codigoASCCI == 32)
             {
                 //espacio
-                return 21;
+                return 24;
             }
             else if (codigoASCCI == 10)
             {
                 //enter
-                return 22;
+                return 25;
             }
 
             return -1;
@@ -415,22 +436,22 @@ namespace Proyecto1.Logica
             if ((codigoASCCI >= 33 && codigoASCCI <= 126) || (codigoASCCI >= 128 && codigoASCCI <= 253))
             {
                 //cualquier char
-                return 19;
+                return 22;
             }
             else if (codigoASCCI == 9)
             {
                 //tab
-                return 20;
+                return 23;
             }
             else if (codigoASCCI == 32)
             {
                 //espacio
-                return 21;
+                return 24;
             }
             else if (codigoASCCI == 10)
             {
                 //enter
-                return 22;
+                return 25;
             }
 
             return -1;
