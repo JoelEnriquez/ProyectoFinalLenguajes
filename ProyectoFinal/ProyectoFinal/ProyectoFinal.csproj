@@ -52,6 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logica\Lexico\AnalizadorLexico.cs" />
+    <Compile Include="Logica\Sintactica\ErrorSintactico.cs" />
+    <Compile Include="Logica\Sintactica\NoTerminal.cs" />
+    <Compile Include="Logica\Sintactica\Pila.cs" />
+    <Compile Include="Logica\Sintactica\ReglasProduccion.cs" />
     <Compile Include="Logica\Sintactica\AnalizadorSintactico.cs" />
     <Compile Include="Logica\Lexico\Automata.cs" />
     <Compile Include="Logica\Lexico\EstadoAceptacion.cs" />
@@ -59,10 +63,11 @@
     <Compile Include="Logica\Lexico\PalabraReservada.cs" />
     <Compile Include="Logica\Lexico\PintarCodigo.cs" />
     <Compile Include="Logica\Lexico\Token.cs" />
-    <Compile Include="Logica\Sintactica\Produccion.cs" />
+    <Compile Include="Logica\Sintactica\ProduccionNoTerminal.cs" />
     <Compile Include="Logica\Sintactica\Simbolo.cs" />
-    <Compile Include="Logica\Sintactica\Terminales.cs" />
+    <Compile Include="Logica\Sintactica\ProduccionTerminal.cs" />
     <Compile Include="Logica\Sintactica\TablaAnalisisSintactico.cs" />
+    <Compile Include="Logica\Sintactica\Terminal.cs" />
     <Compile Include="ObjetosCodigo\CodigoFuente.cs" />
     <Compile Include="ObjetosCodigo\Proyecto.cs" />
     <Compile Include="Windows\AbrirBorrarCodigo.cs">

@@ -41,7 +41,9 @@ namespace Proyecto1.Logica
         private Color colorToken(String tipoToken)
         {
             if (tipoToken.Equals("Operador Relacional") || tipoToken.Equals("Operador Logico") ||
-               tipoToken.Equals("Signos de agrupacion") || tipoToken.Equals("Operador Aritmetico") ||
+               tipoToken.Equals("Signos de agrupacion") || tipoToken.Equals("Operador Aritmetico Mas") || 
+               tipoToken.Equals("Operador Aritmetico Multi") || tipoToken.Equals("Operador Aritmetico Division") ||
+               tipoToken.Equals("Operador Aritmetico Menos") || tipoToken.Equals("Operador Aritmetico Incre-Decre") ||
                tipoToken.Equals("Operador Logico NOT") || tipoToken.Equals("Potencia") ||
                tipoToken.Equals("Parentesis Apertura") || tipoToken.Equals("Parentesis Cierre") ||
                tipoToken.Equals("Llave Apertura") || tipoToken.Equals("Llave Cierre")) 
@@ -89,7 +91,8 @@ namespace Proyecto1.Logica
                tipoToken.Equals("PR_Sino") || tipoToken.Equals("PR_Sino_Si") ||
                tipoToken.Equals("PR_Mientras") || tipoToken.Equals("PR_Hacer") ||
                tipoToken.Equals("PR_Desde") || tipoToken.Equals("PR_Hasta") ||
-               tipoToken.Equals("PR_Incremento") || tipoToken.Equals("PR_Principal"))
+               tipoToken.Equals("PR_Incremento") || tipoToken.Equals("PR_Principal") ||
+               tipoToken.Equals("PR_Imprimir") || tipoToken.Equals("PR_Leer"))
             {
                 return Color.Green;
             }

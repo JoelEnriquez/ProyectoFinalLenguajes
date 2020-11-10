@@ -156,6 +156,8 @@ namespace Proyecto1.Logica
             listadoPalabrasReservadas.Add(new PalabraReservada("HASTA", "PR_Hasta"));
             listadoPalabrasReservadas.Add(new PalabraReservada("INCREMENTO", "PR_Incremento"));
             listadoPalabrasReservadas.Add(new PalabraReservada("principal", "PR_Principal"));
+            listadoPalabrasReservadas.Add(new PalabraReservada("imprimir", "PR_Imprimir"));
+            listadoPalabrasReservadas.Add(new PalabraReservada("leer", "PR_Leer"));
         }
 
         private void setearEstadosAceptacion()
@@ -175,7 +177,7 @@ namespace Proyecto1.Logica
 
         private void ingresarCaminos()
         {
-            listEstadosAceptacion.Add(new EstadoAceptacion(1, "Operador Aritmetico"));//
+            listEstadosAceptacion.Add(new EstadoAceptacion(1, "Operador Aritmetico Menos"));//
             listEstadosAceptacion.Add(new EstadoAceptacion(2, "Entero"));//
             listEstadosAceptacion.Add(new EstadoAceptacion(4, "Char"));//
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Cadena", "7-3,7-5"));
@@ -183,10 +185,10 @@ namespace Proyecto1.Logica
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Operador Relacional", "9-8,10-5"));
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Operador Relacional", "10-8,10-5"));
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Operador Relacional", "11-8,10-5"));
-            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Operador Aritmetico", "1-7,1-5"));
-            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Operador Aritmetico", "0-1,0-5"));
+            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Operador Aritmetico Incre-Decre", "1-7,1-5"));
+            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Operador Aritmetico Incre-Decre", "0-1,0-5"));
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Comentario", "2-6,3-14,3-16,2-5"));
-            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Operador Aritmetico", "3-5"));
+            listEstadosAceptacion.Add(new EstadoAceptacion(5, "Operador Aritmetico Multi", "3-5"));
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Fin Sentencia", "14-5"));
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Coma", "18-5"));
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Potencia", "19-5"));
@@ -199,8 +201,8 @@ namespace Proyecto1.Logica
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Parentesis Cierre", "16-5"));
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Operador Logico", "12-9,12-5"));
             listEstadosAceptacion.Add(new EstadoAceptacion(5, "Operador Logico", "13-10,13-5"));
-            listEstadosAceptacion.Add(new EstadoAceptacion(6, "Operador Aritmetico"));//
-            listEstadosAceptacion.Add(new EstadoAceptacion(7, "Operador Aritmetico"));//
+            listEstadosAceptacion.Add(new EstadoAceptacion(6, "Operador Aritmetico Division"));//
+            listEstadosAceptacion.Add(new EstadoAceptacion(7, "Operador Aritmetico Mas"));//
             listEstadosAceptacion.Add(new EstadoAceptacion(8, "Operador Relacional", "8-8"));
             listEstadosAceptacion.Add(new EstadoAceptacion(8, "Operador Relacional", "9-8"));
             listEstadosAceptacion.Add(new EstadoAceptacion(8, "Asignacion", "10-8"));
