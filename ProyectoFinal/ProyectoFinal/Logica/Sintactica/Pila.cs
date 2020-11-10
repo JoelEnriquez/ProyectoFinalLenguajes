@@ -45,6 +45,6 @@ namespace Proyecto1.Logica.Sintactica
             return pilaSimbolos.ElementAt(posicion);
         }
 
-
+        
     }
 }

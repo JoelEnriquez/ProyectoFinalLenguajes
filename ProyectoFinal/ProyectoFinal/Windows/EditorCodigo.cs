@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic;
 using Proyecto1.Logica;
+using Proyecto1.Logica.Sintactica;
 using Proyecto1.ObjetosCodigo;
 using Proyecto1.Windows;
 using System;
@@ -410,7 +411,17 @@ namespace Proyecto1
                     List<Token> tokensInvalidos = manejador.obtenerTokensInvalidos();
                     for (int i = 0; i < tokensInvalidos.Count; i++)
                     {
-                        salidaErroresRichText.AppendText(tokensInvalidos[i].contenido + "\n");
+                        salidaErroresRichText.AppendText("Error Lexico: "+tokensInvalidos[i].contenido+" Lugar: Fila:"+tokensInvalidos[i].fila+" Columna:"+tokensInvalidos[i].columna + "\n");
+                    }
+
+                    //Ejecutar el analizador sintactico
+                    AnalizadorSintactico analizadorSintactico = new AnalizadorSintactico(manejador.obtenerTokensValidos());
+                    analizadorSintactico.analizarCodigo();
+
+                    List<ErrorSintactico> erroresSintacticos = analizadorSintactico.getListaErrores();
+                    for (int i = 0; i < erroresSintacticos.Count; i++)
+                    {
+                        salidaErroresRichText.AppendText("Error Sintactico: Se esperaba el token:"+erroresSintacticos[i].tokenEsperado+" En la fila:"+erroresSintacticos[i].filaError + "\n");
                     }
                 } 
             }

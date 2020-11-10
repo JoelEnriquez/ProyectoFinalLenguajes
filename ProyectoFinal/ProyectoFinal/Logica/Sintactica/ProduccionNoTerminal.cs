@@ -61,7 +61,7 @@ namespace Proyecto1.Logica.Sintactica
             listaNoTerminales.Add(new NoTerminal(40, "ASIG_VALOR"));
         }
 
-        public int retornarPorNombre(String nombreNoTerminal)
+        public int retornarFilaPorNombre(String nombreNoTerminal)
         {
             for (int i = 0; i < listaNoTerminales.Count; i++)
             {

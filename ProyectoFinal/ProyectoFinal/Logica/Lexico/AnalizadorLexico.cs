@@ -39,8 +39,6 @@ namespace Proyecto1.Logica
             {
                 int charActual = charAnalizar[i];
 
-                moverColumnaFila(charActual);
-
                 columnaAutomata = automata.devolverColumna(charActual, estadoActual); //Se obtiene la columna correspondiente al char
 
                 int transicion = automata.retornarTransicion(estadoActual, columnaAutomata);
@@ -56,14 +54,15 @@ namespace Proyecto1.Logica
                         //si no hay cadena aceptada
                         if (estadoActual == 0)
                         {
-                        //el token erroneo es el entrante
-                        agregarTokenErroneoNuevo(Char.ToString((char)charActual), i+1);
+                            //el token erroneo es el entrante
+                            moverColumnaFila(charActual);
+                            agregarTokenErroneoNuevo(Char.ToString((char)charActual), i+1);
                         }
                         else
                         {
                         String tokenErroneo = auxCadenaMomentanea.Substring(auxTokenAceptado.Length);
                         agregarTokenErroneoNuevo(tokenErroneo, i);
-                            i--;//Volver a analizar el token entrante   
+                            i--;//Volver a analizar el token entrante
                         }
                     }
                     estadoActual = 0;
@@ -74,7 +73,7 @@ namespace Proyecto1.Logica
                 else
                 {
                     String cadenaTransicion = Char.ToString((char)charActual);
-
+                    moverColumnaFila(charActual);
                     establecerRuta(transicion);
                     
                     //concatenar la cadena momentanea y proseguir al siguiente

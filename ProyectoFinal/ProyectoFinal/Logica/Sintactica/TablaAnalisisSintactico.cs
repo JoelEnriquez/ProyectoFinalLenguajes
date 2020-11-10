@@ -13,7 +13,19 @@ namespace Proyecto1.Logica.Sintactica
 
         public TablaAnalisisSintactico()
         {
+            llenarEstadosErroneos();
             llenarTabla();
+        }
+
+        private void llenarEstadosErroneos()
+        {
+            for (int i = 0; i < tablaAnalisisSintactico.GetLength(0); i++)
+            {
+                for (int j = 0; j < tablaAnalisisSintactico.GetLength(1); j++)
+                {
+                    tablaAnalisisSintactico[i, j] = -1;
+                }
+            }
         }
 
         private void llenarTabla()

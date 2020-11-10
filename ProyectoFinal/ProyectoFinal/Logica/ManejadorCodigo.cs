@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Proyecto1.Logica.Sintactica;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,11 +15,13 @@ namespace Proyecto1.Logica
         private EditorCodigo editor;
         private List<String> tokensInvalidos;
         private List<Token> listaTokens;
+        private List<ErrorSintactico> errorSintacticos;
 
         public ManejadorCodigo(EditorCodigo editor)
         {
             this.editor = editor;
             tokensInvalidos = new List<String>();
+            errorSintacticos = new List<ErrorSintactico>();
             listaTokens = new List<Token>();
         }
 
@@ -28,6 +31,7 @@ namespace Proyecto1.Logica
             {
                 tokensInvalidos.Clear();
                 listaTokens.Clear();
+                errorSintacticos.Clear();
             }
             byte[] asciiBytes = Encoding.ASCII.GetBytes(codigoAnalizar);
             analizador = new AnalizadorLexico(asciiBytes,this,editor);
@@ -94,6 +98,27 @@ namespace Proyecto1.Logica
             return tokensInvalidos;
         }
 
+        public List<Token> obtenerTokensValidos()
+        {
+            List<Token> tokenValidos = new List<Token>();
+            for (int i = 0; i < numeroTokens(); i++)
+            {
+                if (!listaTokens[i].tipoToken.Equals("Erroneo"))
+                {
+                    tokenValidos.Add(listaTokens[i]);
+                }
+            }
+            return tokenValidos;
+        }
+
+        public List<ErrorSintactico> obtenerErroresSintacticos()
+        {
+            return errorSintacticos;
+        }
         
+        public void setListaErroresSintacticos(List<ErrorSintactico> errorSintacticos)
+        {
+            this.errorSintacticos = errorSintacticos;
+        }
     }
 }

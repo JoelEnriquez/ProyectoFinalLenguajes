@@ -53,7 +53,7 @@ namespace Proyecto1.Logica.Sintactica
             listaTerminales.Add(new Terminal(33, "Asignacion"));
         }
 
-        public int retornarPorNombre(String nombreTerminal)
+        public int retornarColumnaPorNombre(String nombreTerminal)
         {
             for (int i = 0; i < listaTerminales.Count; i++)
             {
