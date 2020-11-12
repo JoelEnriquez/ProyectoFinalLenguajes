@@ -42,7 +42,7 @@ namespace Proyecto1.Logica.Sintactica
             listaNoTerminales.Add(new NoTerminal(21, "DESDE_BLOCK"));
             listaNoTerminales.Add(new NoTerminal(22, "HASTA_BLOCK"));
             listaNoTerminales.Add(new NoTerminal(23, "INCREMENTO_BLOCK"));
-            listaNoTerminales.Add(new NoTerminal(24, "BODY_BAR"));
+            listaNoTerminales.Add(new NoTerminal(24, "BODY_VAR"));
             listaNoTerminales.Add(new NoTerminal(25, "ASIG"));
             listaNoTerminales.Add(new NoTerminal(26, "FIN_VAR"));
             listaNoTerminales.Add(new NoTerminal(27, "CHANGE_VALOR"));

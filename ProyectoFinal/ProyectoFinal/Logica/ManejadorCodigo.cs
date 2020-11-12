@@ -103,7 +103,7 @@ namespace Proyecto1.Logica
             List<Token> tokenValidos = new List<Token>();
             for (int i = 0; i < numeroTokens(); i++)
             {
-                if (!listaTokens[i].tipoToken.Equals("Erroneo"))
+                if (!listaTokens[i].tipoToken.Equals("Erroneo") && !listaTokens[i].tipoToken.Equals("Espacio Blanco"))
                 {
                     tokenValidos.Add(listaTokens[i]);
                 }

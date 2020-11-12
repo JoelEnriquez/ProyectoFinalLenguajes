@@ -78,7 +78,7 @@ namespace Proyecto1.Logica
                     else
                     {
                         listaErrores.Add(new ErrorSintactico(tokenActual.fila, simboloActual.contenido));
-                        reduce();
+                        transicionInvalida = true;
                     }
                 }
             }
@@ -108,7 +108,7 @@ namespace Proyecto1.Logica
         {
             pila.EliminarUltimoElemento();
             //Se ingresan los simbolos nuevos a la pila
-            for (int i = simbolosSustituir.Length-1; i > 0; i--)
+            for (int i = simbolosSustituir.Length-1; i >= 0; i--)
             {
                 pila.agregarElemento(simbolosSustituir[i]);
             }
